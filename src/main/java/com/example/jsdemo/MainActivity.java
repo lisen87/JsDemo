@@ -160,44 +160,44 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public byte[] readStream(InputStream inputStream) throws Exception {
-        byte[] buffer = new byte[1024];
-        int len = -1;
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+//     public byte[] readStream(InputStream inputStream) throws Exception {
+//         byte[] buffer = new byte[1024];
+//         int len = -1;
+//         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
 
-        while ((len = inputStream.read(buffer)) != -1) {
-            byteArrayOutputStream.write(buffer, 0, len);
-        }
+//         while ((len = inputStream.read(buffer)) != -1) {
+//             byteArrayOutputStream.write(buffer, 0, len);
+//         }
 
-        inputStream.close();
-        byteArrayOutputStream.close();
-        return byteArrayOutputStream.toByteArray();
-    }
+//         inputStream.close();
+//         byteArrayOutputStream.close();
+//         return byteArrayOutputStream.toByteArray();
+//     }
 
-    public String getHtml(final String urlpath) {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    URL url = new URL(urlpath);
-                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                    conn.setConnectTimeout(6 * 1000);
-                    conn.setRequestMethod("GET");
+//     public String getHtml(final String urlpath) {
+//         new Thread(new Runnable() {
+//             @Override
+//             public void run() {
+//                 try {
+//                     URL url = new URL(urlpath);
+//                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+//                     conn.setConnectTimeout(6 * 1000);
+//                     conn.setRequestMethod("GET");
 
-                    if (conn.getResponseCode() == 200) {
-                        InputStream inputStream = conn.getInputStream();
-                        byte[] data = readStream(inputStream);
-                        Message msg = new Message();
-                        msg.obj = new String(data);
-                        msg.what = 1;
-                        mHandler.sendMessage(msg);
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }).start();
+//                     if (conn.getResponseCode() == 200) {
+//                         InputStream inputStream = conn.getInputStream();
+//                         byte[] data = readStream(inputStream);
+//                         Message msg = new Message();
+//                         msg.obj = new String(data);
+//                         msg.what = 1;
+//                         mHandler.sendMessage(msg);
+//                     }
+//                 } catch (Exception e) {
+//                     e.printStackTrace();
+//                 }
+//             }
+//         }).start();
 
-        return "";
-    }
+//         return "";
+//     }
 }
